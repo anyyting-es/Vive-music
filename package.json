@@ -1,0 +1,92 @@
+{
+  "name": "vibe",
+  "version": "0.1.0",
+  "description": "Local music player with modern interface",
+  "main": "dist/main.js",
+  "author": "Anthony",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack --config webpack.config.js && electron .",
+    "dev": "webpack --config webpack.config.js --watch",
+    "build": "webpack --config webpack.config.js --mode production",
+    "dist": "npm run build && electron-builder",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:all": "npm run build && electron-builder --linux --win"
+  },
+  "build": {
+    "appId": "com.vibe.musicplayer",
+    "productName": "Vibe",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "src/index.html",
+      "src/assets/**/*"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "icon": "src/assets/icon.png",
+      "category": "Audio",
+      "maintainer": "Anthony"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "src/assets/icon.png"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "src/assets/icon.png",
+      "category": "public.app-category.music"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "keywords": [
+    "music",
+    "player",
+    "electron",
+    "audio"
+  ],
+  "devDependencies": {
+    "@types/howler": "^2.2.12",
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
+    "autoprefixer": "^10.4.23",
+    "css-loader": "^6.8.1",
+    "electron": "^27.1.3",
+    "electron-builder": "^24.9.1",
+    "postcss": "^8.4.32",
+    "postcss-loader": "^7.3.3",
+    "style-loader": "^3.3.3",
+    "tailwindcss": "^3.3.6",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@material/material-color-utilities": "^0.3.0",
+    "dbus-native": "^0.4.0",
+    "discord-rpc": "^4.0.1",
+    "howler": "^2.2.4",
+    "mpris-service": "^2.1.2",
+    "music-metadata": "^8.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
